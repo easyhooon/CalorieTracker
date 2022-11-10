@@ -1,5 +1,6 @@
 package com.kenshi.onboarding_presentation.components
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -8,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.kenshi.core_ui.LocalSpacing
 
 
 @Composable
@@ -27,7 +29,8 @@ fun ActionButton(
         Text(
             text = text,
             style = textStyle,
-            color = MaterialTheme.colors.onPrimary
+            color = MaterialTheme.colors.onPrimary,
+            modifier = Modifier.padding(LocalSpacing.current.spaceSmall)
         )
     }
 }
