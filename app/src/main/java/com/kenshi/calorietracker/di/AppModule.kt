@@ -5,6 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.kenshi.core.domain.data.DefaultPreferences
 import com.kenshi.core.domain.preferences.Preferences
+import com.kenshi.core.domain.use_case.FilterOutDigits
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,5 +31,11 @@ object AppModule {
         sharedPreferences: SharedPreferences
     ): Preferences {
         return DefaultPreferences(sharedPreferences)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFilterOutDigitsUseCase(): FilterOutDigits {
+        return FilterOutDigits()
     }
 }

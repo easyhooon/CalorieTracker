@@ -23,7 +23,6 @@ class GenderViewModel @Inject constructor(
     var selectedGender by mutableStateOf<Gender>(Gender.Male)
         private set
 
-    // TODO SharedFlow 로 migration -> 그게 compose 에서 맞는 방법인지 확인
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
