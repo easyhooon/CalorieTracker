@@ -16,6 +16,7 @@ import com.kenshi.core.navigation.Route
 import com.kenshi.onboarding_presentation.activity.ActivityScreen
 import com.kenshi.onboarding_presentation.age.AgeScreen
 import com.kenshi.onboarding_presentation.gender.GenderScreen
+import com.kenshi.onboarding_presentation.goal.GoalScreen
 import com.kenshi.onboarding_presentation.height.HeightScreen
 import com.kenshi.onboarding_presentation.weight.WeightScreen
 import com.kenshi.onboarding_presentation.welcome.WelcomeScreen
@@ -73,7 +74,7 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(Route.GOAL) {
-
+                            GoalScreen(onNavigate = navController::navigate)
                         }
 
                         composable(Route.NUTRIENT_GOAL) {
