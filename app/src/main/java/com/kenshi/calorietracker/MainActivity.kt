@@ -18,6 +18,7 @@ import com.kenshi.onboarding_presentation.age.AgeScreen
 import com.kenshi.onboarding_presentation.gender.GenderScreen
 import com.kenshi.onboarding_presentation.goal.GoalScreen
 import com.kenshi.onboarding_presentation.height.HeightScreen
+import com.kenshi.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.kenshi.onboarding_presentation.weight.WeightScreen
 import com.kenshi.onboarding_presentation.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -78,7 +79,10 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(Route.NUTRIENT_GOAL) {
-
+                            NutrientGoalScreen(
+                                scaffoldState = scaffoldState,
+                                onNavigate = navController::navigate
+                            )
                         }
 
                         composable(Route.TRACKER_OVERVIEW) {
