@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.kenshi.calorietracker.navigation.navigate
 import com.kenshi.calorietracker.ui.theme.CalorieTrackerTheme
 import com.kenshi.core.navigation.Route
+import com.kenshi.onboarding_presentation.activity.ActivityScreen
 import com.kenshi.onboarding_presentation.age.AgeScreen
 import com.kenshi.onboarding_presentation.gender.GenderScreen
 import com.kenshi.onboarding_presentation.height.HeightScreen
@@ -67,15 +68,15 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
-                        composable(Route.NUTRIENT_GOAL) {
-
-                        }
-
                         composable(Route.ACTIVITY) {
-
+                            ActivityScreen(onNavigate = navController::navigate)
                         }
 
                         composable(Route.GOAL) {
+
+                        }
+
+                        composable(Route.NUTRIENT_GOAL) {
 
                         }
 

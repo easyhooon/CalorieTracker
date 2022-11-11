@@ -29,6 +29,7 @@ fun UnitTextField(
         modifier = modifier,
         horizontalArrangement = Arrangement.Center
     ) {
+        //TODO 체크 버튼을 누르면 키보드가 내려가도록
         BasicTextField(
             value = value,
             onValueChange = onValueChange,
