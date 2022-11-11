@@ -15,6 +15,7 @@ import com.kenshi.calorietracker.ui.theme.CalorieTrackerTheme
 import com.kenshi.core.navigation.Route
 import com.kenshi.onboarding_presentation.age.AgeScreen
 import com.kenshi.onboarding_presentation.gender.GenderScreen
+import com.kenshi.onboarding_presentation.height.HeightScreen
 import com.kenshi.onboarding_presentation.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,7 +53,10 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(Route.HEIGHT) {
-
+                            HeightScreen(
+                                scaffoldState = scaffoldState,
+                                onNavigate = navController::navigate
+                            )
                         }
 
                         composable(Route.WEIGHT) {
