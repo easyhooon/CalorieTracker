@@ -13,6 +13,8 @@ interface OpenFoodApi {
         @Query("page_size") pageSize: Int
     ): SearchDto
 
+    // 맨앞 두글자 국가 초성
+    // 원하는 언어로 데이터를 받아올 수 있음
     companion object {
         const val BASE_URL = "https://us.openfoodfacts.org/"
     }
