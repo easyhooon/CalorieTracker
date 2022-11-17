@@ -1,4 +1,4 @@
-package com.kenshi.core.domain.data
+package com.kenshi.core.domain.data.preferences
 
 import android.content.SharedPreferences
 import com.kenshi.core.domain.model.ActivityLevel
@@ -91,5 +91,16 @@ class DefaultPreferences(
             proteinRatio = proteinRatio,
             fatRatio = fatRatio
         )
+    }
+
+    override fun saveShouldShowOnboarding(shouldShow: Boolean) {
+        sharedPref.edit()
+            .putBoolean(Preferences.KEY_SHOULD_SHOW_ONBOARDING, shouldShow)
+            .apply()
+    }
+
+    override fun loadShouldShowOnboarding(): Boolean {
+        // default is true
+        return sharedPref.getBoolean(Preferences.KEY_SHOULD_SHOW_ONBOARDING, true)
     }
 }
