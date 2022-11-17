@@ -21,6 +21,7 @@ import com.kenshi.onboarding_presentation.height.HeightScreen
 import com.kenshi.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.kenshi.onboarding_presentation.weight.WeightScreen
 import com.kenshi.onboarding_presentation.welcome.WelcomeScreen
+import com.kenshi.tracker_presentation.tracker_overview.TrackerOverViewScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -86,7 +87,9 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(Route.TRACKER_OVERVIEW) {
-
+                            TrackerOverViewScreen(
+                                onNavigate = navController::navigate
+                            )
                         }
 
                         composable(Route.SEARCH) {
