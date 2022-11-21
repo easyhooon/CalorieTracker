@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kenshi.core.domain.preferences.Preferences
 import com.kenshi.core.domain.use_case.FilterOutDigits
-import com.kenshi.core.navigation.Route
 import com.kenshi.core.util.UiEvent
 import com.kenshi.core.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -47,6 +46,6 @@ class HeightViewModel @Inject constructor(
             return@launch
         }
         preferences.saveHeight(heightNumber)
-        _uiEvent.send(UiEvent.Navigate(Route.WEIGHT))
+        _uiEvent.send(UiEvent.Success)
     }
 }

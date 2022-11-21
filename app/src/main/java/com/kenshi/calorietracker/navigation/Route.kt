@@ -1,4 +1,4 @@
-package com.kenshi.core.navigation
+package com.kenshi.calorietracker.navigation
 
 object Route {
     const val WELCOME = "welcome"
