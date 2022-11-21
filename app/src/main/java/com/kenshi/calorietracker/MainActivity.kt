@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.kenshi.calorietracker.navigation.navigate
 import com.kenshi.calorietracker.ui.theme.CalorieTrackerTheme
+import com.kenshi.core.domain.preferences.Preferences
 import com.kenshi.core.navigation.Route
 import com.kenshi.onboarding_presentation.activity.ActivityScreen
 import com.kenshi.onboarding_presentation.age.AgeScreen
@@ -26,11 +27,17 @@ import com.kenshi.onboarding_presentation.welcome.WelcomeScreen
 import com.kenshi.tracker_presentation.search.SearchScreen
 import com.kenshi.tracker_presentation.tracker_overview.TrackerOverViewScreen
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var preferences: Preferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var showShowOnboarding = preferences.loadShouldShowOnboarding()
         setContent {
             CalorieTrackerTheme {
                 val navController = rememberNavController()
@@ -42,7 +49,11 @@ class MainActivity : ComponentActivity() {
                 ) {
                     NavHost(
                         navController = navController,
-                        startDestination = Route.WELCOME
+                        startDestination = if (showShowOnboarding) {
+                            Route.WELCOME
+                        } else {
+                            Route.TRACKER_OVERVIEW
+                        }
                     ) {
                         composable(Route.WELCOME) {
                             // 문법 확인

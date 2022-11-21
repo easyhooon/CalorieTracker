@@ -1,4 +1,4 @@
-package com.kenshi.tracker_presentation.components
+package com.kenshi.tracker_presentation.tracker_overview.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -17,8 +17,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
-import com.kenshi.core_ui.LocalSpacing
 import com.kenshi.core.R
+import com.kenshi.core_ui.LocalSpacing
+import com.kenshi.tracker_presentation.components.NutrientInfo
+import com.kenshi.tracker_presentation.components.UnitDisplay
 import com.kenshi.tracker_presentation.tracker_overview.Meal
 
 @Composable
@@ -82,17 +84,13 @@ fun ExpandableMeal(
                             amount = meal.carbs,
                             unit = stringResource(id = R.string.grams)
                         )
-
                         Spacer(modifier = Modifier.width(spacing.spaceSmall))
-
                         NutrientInfo(
                             name = stringResource(id = R.string.protein),
                             amount = meal.protein,
                             unit = stringResource(id = R.string.grams)
                         )
-
                         Spacer(modifier = Modifier.width(spacing.spaceSmall))
-
                         NutrientInfo(
                             name = stringResource(id = R.string.fat),
                             amount = meal.fat,

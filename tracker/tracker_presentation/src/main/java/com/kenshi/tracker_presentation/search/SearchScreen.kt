@@ -72,7 +72,9 @@ fun SearchScreen(
             onValueChange = {
                 viewModel.onEvent(SearchEvent.OnQueryChange(it))
             },
+            shouldShowHint = state.isHintVisible,
             onSearch = {
+                keyboardController?.hide()
                 viewModel.onEvent(SearchEvent.OnSearch)
             },
             onFocusChanged = {
@@ -88,13 +90,14 @@ fun SearchScreen(
                         viewModel.onEvent(SearchEvent.OnToggleTrackableFood(food.food))
                     },
                     onAmountChange = {
-                        viewModel.onEvent(
-                            SearchEvent.OnAmountForFoodChange(
+                        viewModel.onEvent(SearchEvent.OnAmountForFoodChange(
                                 food.food, it
                             )
                         )
                     },
                     onTrack = {
+                        // 이런식으로 간단하게 키보드를 내려줄 수 있다.
+                        keyboardController?.hide()
                         viewModel.onEvent(
                             SearchEvent.OnTrackFoodClick(
                                 food = food.food,

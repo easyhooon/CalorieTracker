@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -16,7 +17,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,6 +25,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -94,8 +95,9 @@ fun TrackableFoodItem(
                     )
                     Spacer(modifier = Modifier.height(spacing.spaceSmall))
                     Text(
-                        text = stringResource(id = R.string.kcal_per_100g,
-                        food.caloriesPer100g
+                        text = stringResource(
+                            id = R.string.kcal_per_100g,
+                            food.caloriesPer100g
                         ),
                         style = MaterialTheme.typography.body2
                     )
@@ -105,6 +107,15 @@ fun TrackableFoodItem(
                 NutrientInfo(
                     name = stringResource(id = R.string.carbs),
                     amount = food.carbsPer100g,
+                    unit = stringResource(id = R.string.grams),
+                    amountTextSize = 16.sp,
+                    unitTextSize = 12.sp,
+                    nameTextStyle = MaterialTheme.typography.body2
+                )
+                Spacer(modifier = Modifier.width(spacing.spaceSmall))
+                NutrientInfo(
+                    name = stringResource(id = R.string.protein),
+                    amount = food.proteinPer100g,
                     unit = stringResource(id = R.string.grams),
                     amountTextSize = 16.sp,
                     unitTextSize = 12.sp,
@@ -136,7 +147,14 @@ fun TrackableFoodItem(
                         keyboardOptions = KeyboardOptions(
                             imeAction = if(trackableFoodUiState.amount.isNotBlank()) {
                                 ImeAction.Done
-                            } else ImeAction.Default
+                            } else ImeAction.Default,
+                            keyboardType = KeyboardType.Number
+                        ),
+                        keyboardActions = KeyboardActions(
+                            onDone = {
+                                onTrack()
+                                defaultKeyboardAction(ImeAction.Done)
+                            }
                         ),
                         singleLine = true,
                         modifier = Modifier
@@ -147,6 +165,7 @@ fun TrackableFoodItem(
                             )
                             //TODO align 과 alignBy 의 차이
                             .alignBy(LastBaseline)
+                            .padding(spacing.spaceMedium)
                     )
                     Spacer(modifier = Modifier.width(spacing.spaceExtraSmall))
                     Text(
@@ -155,7 +174,10 @@ fun TrackableFoodItem(
                         modifier = Modifier.alignBy(LastBaseline)
                     )
                 }
-                IconButton(onClick = onTrack) {
+                IconButton(
+                    onClick = onTrack,
+                    enabled = trackableFoodUiState.amount.isNotBlank()
+                ) {
                     Icon(
                         imageVector = Icons.Default.Check,
                         contentDescription = stringResource(id = R.string.track)

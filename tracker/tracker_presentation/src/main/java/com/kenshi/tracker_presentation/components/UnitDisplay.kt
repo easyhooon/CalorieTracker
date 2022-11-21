@@ -33,9 +33,7 @@ fun UnitDisplay(
             color = amountColor,
             modifier = Modifier.alignBy(LastBaseline)
         )
-
         Spacer(modifier = Modifier.width(spacing.spaceExtraSmall))
-
         Text(
             text = unit,
             style = MaterialTheme.typography.body1,

@@ -12,8 +12,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.kenshi.core.util.UiEvent
 import com.kenshi.core_ui.LocalSpacing
 import com.kenshi.core.R
-import com.kenshi.tracker_presentation.components.ExpandableMeal
-import com.kenshi.tracker_presentation.components.TrackedFoodItem
+import com.kenshi.tracker_presentation.tracker_overview.components.ExpandableMeal
+import com.kenshi.tracker_presentation.tracker_overview.components.TrackedFoodItem
 import com.kenshi.tracker_presentation.tracker_overview.components.AddButton
 import com.kenshi.tracker_presentation.tracker_overview.components.DaySelector
 import com.kenshi.tracker_presentation.tracker_overview.components.NutrientsHeader

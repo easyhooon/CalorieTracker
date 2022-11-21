@@ -1,4 +1,4 @@
-package com.kenshi.tracker_presentation.components
+package com.kenshi.tracker_presentation.tracker_overview.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,6 +25,7 @@ import coil.compose.rememberImagePainter
 import com.kenshi.core.R
 import com.kenshi.core_ui.LocalSpacing
 import com.kenshi.tracker_domain.model.TrackedFood
+import com.kenshi.tracker_presentation.components.NutrientInfo
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
@@ -60,7 +61,7 @@ fun TrackedFoodItem (
             contentDescription = trackedFood.name,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxHeight()
                 .aspectRatio(1f)
                 .clip(
                     RoundedCornerShape(
@@ -114,7 +115,6 @@ fun TrackedFoodItem (
                     nameTextStyle = MaterialTheme.typography.body2
                 )
                 Spacer(modifier = Modifier.width(spacing.spaceSmall))
-
                 NutrientInfo(
                     name = stringResource(id = R.string.protein),
                     amount = trackedFood.protein,
@@ -124,7 +124,6 @@ fun TrackedFoodItem (
                     nameTextStyle = MaterialTheme.typography.body2
                 )
                 Spacer(modifier = Modifier.width(spacing.spaceSmall))
-
                 NutrientInfo(
                     name = stringResource(id = R.string.fat),
                     amount = trackedFood.fat,
