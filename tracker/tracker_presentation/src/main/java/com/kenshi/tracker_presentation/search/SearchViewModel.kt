@@ -76,7 +76,9 @@ class SearchViewModel @Inject constructor(
                 state = state.copy(
                     trackableFood = foods.map {
                         TrackableFoodUiState(it)
-                    }
+                    },
+                    isSearching = false,
+                    query = ""
                 )
             }
             .onFailure {
