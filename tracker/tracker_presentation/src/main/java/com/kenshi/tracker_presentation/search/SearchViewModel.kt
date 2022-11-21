@@ -9,11 +9,13 @@ import com.kenshi.core.domain.use_case.FilterOutDigits
 import com.kenshi.core.util.UiEvent
 import com.kenshi.core.util.UiText
 import com.kenshi.tracker_domain.use_case.TrackerUseCases
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class SearchViewModel @Inject constructor(
     private val trackerUseCases: TrackerUseCases,
     private val filterOutDigits: FilterOutDigits
