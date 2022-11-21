@@ -15,7 +15,7 @@ import java.time.LocalDate
 class TrackerRepositoryImpl(
     private val dao: TrackerDao,
     private val api: OpenFoodApi
-): TrackerRepository {
+) : TrackerRepository {
 
     override suspend fun searchFood(
         query: String,
@@ -31,9 +31,19 @@ class TrackerRepositoryImpl(
             // repository interface 에서 자정한 type 으로 return 하기 위해선
             // mapper 가 필요
             Result.success(
-                searchDto.products.mapNotNull { it.toTrackableFood() }
+                searchDto.products
+                    .filter {
+                        val calculatedCalories =
+                            it.nutriments.carbohydrates100g * 4f +
+                                    it.nutriments.proteins100g * 4f +
+                                    it.nutriments.fat100g * 9f
+                        val lowerBound = calculatedCalories * 0.99f
+                        val upperBound = calculatedCalories * 1.01f
+                        it.nutriments.energyKcal100g in (lowerBound..upperBound)
+                    }
+                    .mapNotNull { it.toTrackableFood() }
             )
-        } catch(e: Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
             Result.failure(e)
         }
@@ -54,7 +64,7 @@ class TrackerRepositoryImpl(
             year = localDate.year
         ).map { entities ->
             // list의 모든 trackedFoodEntity 객체들을 TrackedFood로 변환
-            entities.map {it.toTrackedFood()}
+            entities.map { it.toTrackedFood() }
         }
     }
 }
