@@ -24,6 +24,8 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,7 +38,7 @@ import com.kenshi.core_ui.LocalSpacing
 import com.kenshi.tracker_presentation.components.NutrientInfo
 import com.kenshi.tracker_presentation.search.TrackableFoodUiState
 
-@OptIn(ExperimentalCoilApi::class)
+@ExperimentalCoilApi
 @Composable
 fun TrackableFoodItem(
     trackableFoodUiState: TrackableFoodUiState,
@@ -166,6 +168,10 @@ fun TrackableFoodItem(
                             //TODO align 과 alignBy 의 차이
                             .alignBy(LastBaseline)
                             .padding(spacing.spaceMedium)
+                            // for test
+                            .semantics {
+                                contentDescription = "Amount"
+                            }
                     )
                     Spacer(modifier = Modifier.width(spacing.spaceExtraSmall))
                     Text(

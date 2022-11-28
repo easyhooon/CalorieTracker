@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.annotation.ExperimentalCoilApi
 import com.kenshi.core.R
 import com.kenshi.core.util.UiEvent
 import com.kenshi.core_ui.LocalSpacing
@@ -27,7 +28,8 @@ import java.time.LocalDate
 
 
 
-@OptIn(ExperimentalComposeUiApi::class)
+@ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @Composable
 fun SearchScreen(
     scaffoldState: ScaffoldState,

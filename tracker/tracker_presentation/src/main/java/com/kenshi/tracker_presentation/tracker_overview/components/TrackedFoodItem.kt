@@ -27,7 +27,7 @@ import com.kenshi.core_ui.LocalSpacing
 import com.kenshi.tracker_domain.model.TrackedFood
 import com.kenshi.tracker_presentation.components.NutrientInfo
 
-@OptIn(ExperimentalCoilApi::class)
+@ExperimentalCoilApi
 @Composable
 fun TrackedFoodItem (
     trackedFood: TrackedFood,

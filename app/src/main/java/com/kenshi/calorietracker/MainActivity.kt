@@ -6,12 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import coil.annotation.ExperimentalCoilApi
 import com.kenshi.calorietracker.ui.theme.CalorieTrackerTheme
 import com.kenshi.core.domain.preferences.Preferences
 import com.kenshi.calorietracker.navigation.Route
@@ -28,6 +30,8 @@ import com.kenshi.tracker_presentation.tracker_overview.TrackerOverViewScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 

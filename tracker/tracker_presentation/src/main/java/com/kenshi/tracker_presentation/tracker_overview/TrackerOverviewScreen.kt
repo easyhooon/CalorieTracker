@@ -8,15 +8,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.annotation.ExperimentalCoilApi
 import com.kenshi.core.R
 import com.kenshi.core_ui.LocalSpacing
 import com.kenshi.tracker_presentation.tracker_overview.components.*
 
 // TODO 아침이 아닌 다른 시간에 먹은 음식을 등록해도 아침에 add 되는 이슈
+@ExperimentalCoilApi
 @Composable
 fun TrackerOverViewScreen(
     onNavigateToSearch: (String, Int, Int, Int) -> Unit,
-    viewModel: TrackerOverviewVIewModel = hiltViewModel()
+    viewModel: TrackerOverviewViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
     val state = viewModel.state
