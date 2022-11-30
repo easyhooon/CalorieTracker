@@ -1,9 +1,10 @@
+// work
 apply plugin: Plugins.ANDROID_LIBRARY
 apply plugin: Plugins.KOTLIN_ANDROID
 apply plugin: Plugins.KAPT
 apply plugin: Plugins.PARCELIZE
 
-//error
+// error
 //plugins {
 //    id(Plugins.ANDROID_LIBRARY)
 //    id(Plugins.KOTLIN_ANDROID)

@@ -26,7 +26,7 @@ import com.kenshi.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.kenshi.onboarding_presentation.weight.WeightScreen
 import com.kenshi.onboarding_presentation.welcome.WelcomeScreen
 import com.kenshi.tracker_presentation.search.SearchScreen
-import com.kenshi.tracker_presentation.tracker_overview.TrackerOverViewScreen
+import com.kenshi.tracker_presentation.tracker_overview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -120,7 +120,7 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(Route.TRACKER_OVERVIEW) {
-                            TrackerOverViewScreen(
+                            TrackerOverviewScreen(
                                 onNavigateToSearch = { mealName, day, month, year ->
                                     navController.navigate(
                                         Route.SEARCH + "/$mealName" + "/$day" + "/$month" + "/$year"

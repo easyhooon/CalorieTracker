@@ -27,7 +27,6 @@ import com.kenshi.tracker_presentation.search.components.TrackableFoodItem
 import java.time.LocalDate
 
 
-
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @Composable

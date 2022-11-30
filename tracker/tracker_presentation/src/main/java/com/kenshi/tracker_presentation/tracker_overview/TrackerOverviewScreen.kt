@@ -16,7 +16,7 @@ import com.kenshi.tracker_presentation.tracker_overview.components.*
 // TODO 아침이 아닌 다른 시간에 먹은 음식을 등록해도 아침에 add 되는 이슈
 @ExperimentalCoilApi
 @Composable
-fun TrackerOverViewScreen(
+fun TrackerOverviewScreen(
     onNavigateToSearch: (String, Int, Int, Int) -> Unit,
     viewModel: TrackerOverviewViewModel = hiltViewModel()
 ) {
