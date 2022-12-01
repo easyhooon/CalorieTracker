@@ -2,17 +2,21 @@ package com.kenshi.onboarding_presentation.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.LastBaseline
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.sp
 import com.kenshi.core_ui.LocalSpacing
 
+@ExperimentalComposeUiApi
 @Composable
 fun UnitTextField(
     value: String,
@@ -25,17 +29,21 @@ fun UnitTextField(
     )
 ) {
     val spacing = LocalSpacing.current
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.Center
     ) {
-        //TODO 체크 버튼을 누르면 키보드가 내려가도록
         BasicTextField(
             value = value,
             onValueChange = onValueChange,
             textStyle = textStyle,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = { keyboardController?.hide() }
             ),
             singleLine = true,
             modifier = Modifier
