@@ -1,18 +1,18 @@
 package com.kenshi.tracker_domain.model
 
 sealed class MealType(val name: String) {
-    object Breakfast: MealType("Breakfast")
-    object Lunch: MealType("Lunch")
-    object Dinner: MealType("Dinner")
-    object Snack: MealType("Snack")
+    object Breakfast: MealType("breakfast")
+    object Lunch: MealType("lunch")
+    object Dinner: MealType("dinner")
+    object Snack: MealType("snack")
 
     companion object {
         fun fromString(name: String): MealType {
-            return when(name) {
-                "Breakfast" -> Breakfast
-                "Lunch" -> Lunch
-                "Dinner" -> Dinner
-                "Snack" -> Snack
+            return when(name.lowercase()) {
+                "breakfast" -> Breakfast
+                "lunch" -> Lunch
+                "dinner" -> Dinner
+                "snack" -> Snack
                 // never happen
                 else -> Breakfast
             }

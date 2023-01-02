@@ -13,6 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -23,6 +24,7 @@ import com.kenshi.core_ui.LocalSpacing
 import com.kenshi.onboarding_presentation.components.ActionButton
 import com.kenshi.onboarding_presentation.components.UnitTextField
 
+@ExperimentalComposeUiApi
 @Composable
 fun WeightScreen(
     scaffoldState: ScaffoldState,
