@@ -46,6 +46,17 @@ android {
     }
 }
 
+kotlin {
+    sourceSets {
+        debug {
+            kotlin.srcDir("build/generated/ksp/debug/kotlin")
+        }
+        release {
+            kotlin.srcDir("build/generated/ksp/release/kotlin")
+        }
+    }
+}
+
 dependencies {
     implementation Compose.compiler
     implementation Compose.ui
@@ -55,7 +66,8 @@ dependencies {
     implementation Compose.runtime
     implementation Compose.runtime
     implementation Compose.runtime
-    implementation Compose.navigation
+    // implementation Compose.navigation
+    implementation Compose.composeDestinations
     implementation Compose.viewModelCompose
     implementation Compose.activityCompose
 
