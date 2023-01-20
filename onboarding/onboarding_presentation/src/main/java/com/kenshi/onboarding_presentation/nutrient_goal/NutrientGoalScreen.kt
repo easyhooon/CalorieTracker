@@ -21,14 +21,18 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.kenshi.core.R
 import com.kenshi.core.util.UiEvent
 import com.kenshi.core_ui.LocalSpacing
+import com.kenshi.onboarding_presentation.OnboardingNavigator
 import com.kenshi.onboarding_presentation.components.ActionButton
 import com.kenshi.onboarding_presentation.components.UnitTextField
+import com.ramcosta.composedestinations.annotation.Destination
 
+@Destination
 @ExperimentalComposeUiApi
 @Composable
 fun NutrientGoalScreen(
     scaffoldState: ScaffoldState,
-    onNextClick: () -> Unit,
+    // onNextClick: () -> Unit,
+    navigator: OnboardingNavigator,
     viewModel: NutrientGoalViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
@@ -37,7 +41,8 @@ fun NutrientGoalScreen(
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Success -> onNextClick()
+                // is UiEvent.Success -> onNextClick()
+                is UiEvent.Success -> navigator.navigateToNextScreen()
                 is UiEvent.ShowSnackbar -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         // unwrapped UiText

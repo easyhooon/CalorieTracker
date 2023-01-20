@@ -15,19 +15,24 @@ import com.kenshi.core.R
 import com.kenshi.core.domain.model.Gender
 import com.kenshi.core.util.UiEvent
 import com.kenshi.core_ui.LocalSpacing
+import com.kenshi.onboarding_presentation.OnboardingNavigator
 import com.kenshi.onboarding_presentation.components.ActionButton
 import com.kenshi.onboarding_presentation.components.SelectableButton
+import com.ramcosta.composedestinations.annotation.Destination
 
+@Destination
 @Composable
 fun GenderScreen(
-    onNextClick: () -> Unit,
+    // onNextClick: () -> Unit,
+    navigator: OnboardingNavigator,
     viewModel: GenderViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Success -> onNextClick()
+                // is UiEvent.Success -> onNextClick()
+                is UiEvent.Success -> navigator.navigateToNextScreen()
                 else -> Unit
             }
         }

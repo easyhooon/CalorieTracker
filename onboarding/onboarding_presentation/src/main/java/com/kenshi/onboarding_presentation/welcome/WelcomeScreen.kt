@@ -11,11 +11,17 @@ import androidx.compose.ui.text.style.TextAlign
 import com.kenshi.core_ui.LocalSpacing
 import com.kenshi.onboarding_presentation.components.ActionButton
 import com.kenshi.core.R
+import com.kenshi.onboarding_presentation.OnboardingNavigator
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
 
 
+@RootNavGraph(start = true)
+@Destination
 @Composable
 fun WelcomeScreen(
-    onNextClick: () -> Unit
+    // onNextClick: () -> Unit
+    navigator: OnboardingNavigator
 ) {
     val spacing = LocalSpacing.current
     Column(
@@ -37,7 +43,8 @@ fun WelcomeScreen(
             text = stringResource(id = R.string.next),
             // 보통 presentation 로직을 viewModel 을 통해 구현해야하지만
             // 해당 기능만 존재하믄 화면이므로 뷰모델 없이 구현(오버엔지니어링이라 생각)
-            onClick = { onNextClick() },
+            // onClick = { onNextClick() },
+            onClick = { navigator.navigateToNextScreen() },
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
     }

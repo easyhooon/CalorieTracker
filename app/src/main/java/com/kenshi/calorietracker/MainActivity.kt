@@ -1,5 +1,6 @@
 package com.kenshi.calorietracker
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,25 +9,16 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import coil.annotation.ExperimentalCoilApi
+import com.kenshi.calorietracker.navigation.CoreFeatureNavigator
+import com.kenshi.calorietracker.navigation.RootNavGraph
 import com.kenshi.calorietracker.ui.theme.CalorieTrackerTheme
 import com.kenshi.core.domain.preferences.Preferences
-import com.kenshi.calorietracker.navigation.Route
-import com.kenshi.onboarding_presentation.activity.ActivityScreen
-import com.kenshi.onboarding_presentation.age.AgeScreen
-import com.kenshi.onboarding_presentation.gender.GenderScreen
-import com.kenshi.onboarding_presentation.goal.GoalScreen
-import com.kenshi.onboarding_presentation.height.HeightScreen
-import com.kenshi.onboarding_presentation.nutrient_goal.NutrientGoalScreen
-import com.kenshi.onboarding_presentation.weight.WeightScreen
-import com.kenshi.onboarding_presentation.welcome.WelcomeScreen
-import com.kenshi.tracker_presentation.search.SearchScreen
-import com.kenshi.tracker_presentation.tracker_overview.TrackerOverviewScreen
+import com.kenshi.onboarding_presentation.OnboardingNavGraph
+import com.kenshi.tracker_presentation.TrackerNavGraph
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.navigation.dependency
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -38,18 +30,20 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var preferences: Preferences
 
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val showShowOnboarding = preferences.loadShouldShowOnboarding()
         setContent {
             CalorieTrackerTheme {
                 val navController = rememberNavController()
-                // for snackbar
+                // for snackbar state
                 val scaffoldState = rememberScaffoldState()
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     scaffoldState = scaffoldState
                 ) {
+                    /*
                     NavHost(
                         navController = navController,
                         startDestination = if (showShowOnboarding) {
@@ -162,7 +156,17 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         }
-                    }
+                    }*/
+
+                    DestinationsNavHost(
+                        navController = navController,
+                        navGraph = RootNavGraph,
+                        startRoute = if(showShowOnboarding) OnboardingNavGraph else TrackerNavGraph,
+                        dependenciesContainerBuilder = {
+                            dependency(scaffoldState)
+                            dependency(CoreFeatureNavigator(destination, navController))
+                        }
+                    )
                 }
             }
         }

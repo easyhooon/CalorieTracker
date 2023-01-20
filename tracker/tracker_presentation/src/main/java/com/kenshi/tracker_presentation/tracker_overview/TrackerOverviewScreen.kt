@@ -12,12 +12,16 @@ import coil.annotation.ExperimentalCoilApi
 import com.kenshi.core.R
 import com.kenshi.core_ui.LocalSpacing
 import com.kenshi.tracker_presentation.tracker_overview.components.*
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
 
-// TODO 아침이 아닌 다른 시간에 먹은 음식을 등록해도 아침에 add 되는 이슈
 @ExperimentalCoilApi
+@RootNavGraph(start = true)
+@Destination
 @Composable
 fun TrackerOverviewScreen(
-    onNavigateToSearch: (String, Int, Int, Int) -> Unit,
+    // onNavigateToSearch: (String, Int, Int, Int) -> Unit,
+    navigator: TrackerOverviewScreenNavigator,
     viewModel: TrackerOverviewViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
@@ -78,7 +82,8 @@ fun TrackerOverviewScreen(
                                 meal.name.asString(context)
                             ),
                             onClick = {
-                                onNavigateToSearch(
+//                                onNavigateToSearch(
+                                navigator.navigateToSearch(
                                     meal.name.asString(context),
                                     state.date.dayOfMonth,
                                     state.date.monthValue,
