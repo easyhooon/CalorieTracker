@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val showShowOnboarding = preferences.loadShouldShowOnboarding()
+        val shouldShowOnboarding = preferences.loadShouldShowOnboarding()
         setContent {
             CalorieTrackerTheme {
                 val navController = rememberNavController()
@@ -161,7 +161,7 @@ class MainActivity : ComponentActivity() {
                     DestinationsNavHost(
                         navController = navController,
                         navGraph = RootNavGraph,
-                        startRoute = if(showShowOnboarding) OnboardingNavGraph else TrackerNavGraph,
+                        startRoute = if(shouldShowOnboarding) OnboardingNavGraph else TrackerNavGraph,
                         dependenciesContainerBuilder = {
                             dependency(scaffoldState)
                             dependency(CoreFeatureNavigator(destination, navController))
